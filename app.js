@@ -1,9 +1,18 @@
-const http = require("http");
-const routes = require("./routes");
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
 
-// createServer() - returns a server and takes a callback function called a
-// requestListener - function that listens for every request
-const server = http.createServer(routes.handler);
+const adminRoutes = require("./routes/admin");
 
-// listen takes in a port name AND keeps on listening for request
-server.listen(3000);
+// yields us another middleware that parses the body sent through a form
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(adminRoutes);
+
+// use() allows to add middleware functions
+// takes in requestHandlers
+app.use("/", (req, res, next) => {
+  res.send("<h1> Hello from Express!</h1>");
+});
+
+app.listen(3000, () => console.log(`listening on localhost:3000`));
