@@ -4,16 +4,16 @@ const app = express();
 const path = require("path");
 const expressHbs = require("express-handlebars");
 
-app.engine(
-  "hbs",
-  expressHbs({
-    extname: "hbs",
-    defaultLayout: false,
-    layoutsDir: "views/layouts/",
-  })
-);
+// app.engine(
+//   "hbs",
+//   expressHbs({
+//     extname: "hbs", // changes defualt extension name: .handlebars to .hbs
+//     defaultLayout: "main-layout", // changes default layout
+//     layoutsDir: "views/layouts/", // layout directory default
+//   })
+// );
 // setting the 'view engine' key with the 'pug' value
-app.set("view engine", "hbs");
+app.set("view engine", "ejs");
 app.set("views", "views");
 
 const adminData = require("./routes/admin");
