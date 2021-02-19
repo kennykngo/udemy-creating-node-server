@@ -4,6 +4,8 @@ const app = express();
 const path = require("path");
 const expressHbs = require("express-handlebars");
 
+const errorController = require("./controllers/error-controller");
+
 // app.engine(
 //   "hbs",
 //   expressHbs({
@@ -16,7 +18,7 @@ const expressHbs = require("express-handlebars");
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-const adminData = require("./routes/admin");
+const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
 // yields us another middleware that parses the body sent through a form
@@ -26,13 +28,10 @@ app.use(bodyParser.urlencoded());
 // required to send CSS to the public's browser
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/admin", adminData.routes);
+app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 // using a catch all method
-app.use((req, res, next) => {
-  res.status(404).render("404", { pageTitle: "Page Not Found" });
-  //   res.status(404).send("<h1>page not found </h1>");
-});
+app.use(errorController.get404);
 
 app.listen(3000, () => console.log(`listening on localhost:3000`));
