@@ -2,9 +2,18 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
+const expressHbs = require("express-handlebars");
 
+app.engine(
+  "hbs",
+  expressHbs({
+    extname: "hbs",
+    defaultLayout: false,
+    layoutsDir: "views/layouts/",
+  })
+);
 // setting the 'view engine' key with the 'pug' value
-app.set("view engine", "pug");
+app.set("view engine", "hbs");
 app.set("views", "views");
 
 const adminData = require("./routes/admin");
@@ -22,7 +31,7 @@ app.use(shopRoutes);
 
 // using a catch all method
 app.use((req, res, next) => {
-  res.status(404).render("404");
+  res.status(404).render("404", { pageTitle: "Page Not Found" });
   //   res.status(404).send("<h1>page not found </h1>");
 });
 
