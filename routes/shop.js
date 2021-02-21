@@ -2,12 +2,17 @@ const path = require("path");
 const express = require("express");
 const router = express.Router();
 
-const productsController = require("../controllers/products-controller");
-const rootDir = require("../util/path");
-const adminData = require("./admin");
+const shopController = require("../controllers/shop-controller");
+// const rootDir = require("../util/path");
+// const adminData = require("./admin");
 
 // use() allows to add middleware functions
 // takes in requestHandlers
-router.get("/", productsController.getProduct);
+router.get("/", shopController.getIndex);
+
+router.get("/products", shopController.getProduct);
+router.get("/cart", shopController.getCart);
+router.get("/orders", shopController.getOrders);
+router.get("/checkout", shopController.getCheckout);
 
 module.exports = router;
