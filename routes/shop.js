@@ -9,7 +9,6 @@ const shopController = require("../controllers/shop-controller");
 // use() allows to add middleware functions
 // takes in requestHandlers
 router.get("/", shopController.getIndex);
-
 router.get("/products", shopController.getProduct);
 router.get("/cart", shopController.getCart);
 router.get("/orders", shopController.getOrders);

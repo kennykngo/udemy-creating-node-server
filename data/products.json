@@ -1,1 +1,9 @@
-[{"title":"Book","imageUrl":"https://thegraphicsfairy.com/wp-content/uploads/2014/10/Free-Public-Domain-Lion-Image-GraphicsFairy.jpg","description":"This is a great book.","price":"1"}]
+[
+  {
+    "id": "1313131",
+    "title": "Book",
+    "imageUrl": "https://thegraphicsfairy.com/wp-content/uploads/2014/10/Free-Public-Domain-Lion-Image-GraphicsFairy.jpg",
+    "description": "This is a great book.",
+    "price": "1"
+  }
+]
